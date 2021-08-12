@@ -10,4 +10,11 @@
     <string name="label_confirmar">Confirmar</string>
     <string name="label_show_success">Cartão cadastrado com sucesso</string>
     <string name="label_share">Compartilhamento</string>
+    <string name="todo">TODO</string>
+
+    <string-array name="itens">
+        <item>red</item>
+        <item>green</item>
+        <item>yellow</item>
+    </string-array>
 </resources>

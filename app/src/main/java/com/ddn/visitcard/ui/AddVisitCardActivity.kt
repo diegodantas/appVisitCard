@@ -1,6 +1,7 @@
 package com.ddn.visitcard.ui
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,9 @@ class AddVisitCardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         insertListeners()
+        val items = resources.getStringArray(R.array.itens)
+        val adapter = ArrayAdapter(applicationContext,R.layout.list_item, items)
+        binding.autoCompleteTextView.setAdapter(adapter)
     }
 
     private fun insertListeners() {
@@ -33,7 +37,8 @@ class AddVisitCardActivity : AppCompatActivity() {
                 empresa = binding.tilEmpresa.editText?.text.toString(),
                 fone = binding.tilFone.editText?.text.toString(),
                 email = binding.tilEmail.editText?.text.toString(),
-                fundoPersonalisado = binding.tilCor.editText?.text.toString()
+                //fundoPersonalisado = binding.tilCor.editText?.text.toString()
+                fundoPersonalisado = binding.autoCompleteTextView.text.toString()
             )
             mainViewModel.insert(businessCard)
             Toast.makeText(
