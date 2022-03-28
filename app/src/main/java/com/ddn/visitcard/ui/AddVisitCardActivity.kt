@@ -37,15 +37,10 @@ class AddVisitCardActivity : AppCompatActivity() {
                 empresa = binding.tilEmpresa.editText?.text.toString(),
                 fone = binding.tilFone.editText?.text.toString(),
                 email = binding.tilEmail.editText?.text.toString(),
-                //fundoPersonalisado = binding.tilCor.editText?.text.toString()
                 fundoPersonalisado = binding.autoCompleteTextView.text.toString()
             )
             mainViewModel.insert(businessCard)
-            Toast.makeText(
-                this,
-                R.string.label_show_success,
-                Toast.LENGTH_LONG
-            ).show()
+            Toast.makeText(this, R.string.label_show_success, Toast.LENGTH_LONG).show()
             finish()
         }
     }

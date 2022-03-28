@@ -16,5 +16,8 @@
         <item>red</item>
         <item>green</item>
         <item>yellow</item>
+        <item>Orange</item>
+        <item>Purple</item>
+        <item>Blue</item>
     </string-array>
 </resources>

@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ddn.visitcard.data.BusinessCard
 import com.ddn.visitcard.databinding.ItemVisitCardBinding
 
-class BusinessCardAdapter :
-    ListAdapter<BusinessCard, BusinessCardAdapter.ViewHolder>(DiffCallback()) {
+class BusinessCardAdapter : ListAdapter<BusinessCard, BusinessCardAdapter.ViewHolder>(DiffCallback()) {
 
     var listenerShare: (View) -> Unit = {}
 
@@ -26,15 +25,19 @@ class BusinessCardAdapter :
         holder.bind(getItem(position))
     }
 
-    inner class ViewHolder(
-        private val binding: ItemVisitCardBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemVisitCardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: BusinessCard) {
             binding.tvNome.text = item.nome
             binding.tvFone.text = item.fone
             binding.tvEmail.text = item.email
             binding.tvEmpresa.text = item.empresa
-            binding.mcvContent.setCardBackgroundColor(Color.parseColor(item.fundoPersonalisado))//item.fundoPersonalisado
+            binding.mcvContent.setCardBackgroundColor(
+                Color.parseColor(
+                    (item.fundoPersonalisado.ifEmpty {
+                        "#FFFFFFFF"
+                    })
+                )
+            )
             binding.mcvContent.setOnClickListener {
                 listenerShare(it)
             }
@@ -44,6 +47,5 @@ class BusinessCardAdapter :
 
 class DiffCallback: DiffUtil.ItemCallback<BusinessCard>(){
     override fun areItemsTheSame(oldItem: BusinessCard, newItem: BusinessCard) = oldItem == newItem
-    override fun areContentsTheSame(oldItem: BusinessCard, newItem: BusinessCard) =
-        oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItem: BusinessCard, newItem: BusinessCard) = oldItem.id == newItem.id
 }

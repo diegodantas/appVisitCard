@@ -69,7 +69,7 @@ class Image {
                     }
                 }
             } else {
-                //Devaices rodando < Q
+                //Devices rodando < Q
                 val imageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
                 val image = File(imageDir, filename)
                 shareIntent(context, Uri.fromFile(image))

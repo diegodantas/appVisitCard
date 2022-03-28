@@ -3,8 +3,11 @@ package com.ddn.visitcard.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.ddn.visitcard.data.BusinessCard
+import com.ddn.visitcard.data.BusinessCardDao
 import com.ddn.visitcard.data.BusinessCardRepository
+import kotlinx.coroutines.launch
 
 class MainViewModel(private val businessCardRepository: BusinessCardRepository) : ViewModel() {
 
@@ -14,6 +17,16 @@ class MainViewModel(private val businessCardRepository: BusinessCardRepository) 
 
     fun getAll() : LiveData<List<BusinessCard>> {
         return businessCardRepository.getAll()
+    }
+
+    fun removeItem(businessCard: BusinessCard) {
+        viewModelScope.launch {
+            businessCardRepository.remove(businessCard)
+        }
+    }
+
+    fun get(card: BusinessCard) : BusinessCard? {
+        return businessCardRepository.get(card.id)
     }
 
 }

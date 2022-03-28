@@ -1,17 +1,20 @@
 package com.ddn.visitcard.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface BusinessCardDao {
 
     @Query("SELECT * FROM BusinessCard")
-    fun getall(): LiveData<List<BusinessCard>>
+    fun getAll(): LiveData<List<BusinessCard>>
+
+    @Query("SELECT * FROM BusinessCard WHERE id=:position ")
+    fun get(position: Int): BusinessCard?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(busenessCard: BusinessCard)
+    suspend fun insert(businessCard: BusinessCard)
+
+    @Delete
+    suspend fun delete(businessCard: BusinessCard)
 }
