@@ -22,7 +22,7 @@ class AddVisitCardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         insertListeners()
-        val items = resources.getStringArray(R.array.itens)
+        val items = Color.values()//resources.getStringArray(R.array.itens)
         val adapter = ArrayAdapter(applicationContext,R.layout.list_item, items)
         binding.autoCompleteTextView.setAdapter(adapter)
     }
@@ -37,11 +37,20 @@ class AddVisitCardActivity : AppCompatActivity() {
                 empresa = binding.tilEmpresa.editText?.text.toString(),
                 fone = binding.tilFone.editText?.text.toString(),
                 email = binding.tilEmail.editText?.text.toString(),
-                fundoPersonalisado = binding.autoCompleteTextView.text.toString()
+                fundoPersonalisado = Color.valueOf(binding.autoCompleteTextView.text.toString()).rgb
             )
             mainViewModel.insert(businessCard)
             Toast.makeText(this, R.string.label_show_success, Toast.LENGTH_LONG).show()
             finish()
         }
     }
+}
+
+enum class Color(val rgb: String) {
+    VERMELHO("#F01105"),
+    VERDE("#56E010"),
+    AZUL("#0E53F0"),
+    AMARELO("#FAE95A"),
+    ROXO("#DE59C8"),
+    LARANJA("#FA703D")
 }

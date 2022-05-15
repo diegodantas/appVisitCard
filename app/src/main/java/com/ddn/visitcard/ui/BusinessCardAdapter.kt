@@ -31,13 +31,7 @@ class BusinessCardAdapter : ListAdapter<BusinessCard, BusinessCardAdapter.ViewHo
             binding.tvFone.text = item.fone
             binding.tvEmail.text = item.email
             binding.tvEmpresa.text = item.empresa
-            binding.mcvContent.setCardBackgroundColor(
-                Color.parseColor(
-                    (item.fundoPersonalisado.ifEmpty {
-                        "#FFFFFFFF"
-                    })
-                )
-            )
+            binding.mcvContent.setCardBackgroundColor(Color.parseColor(item.fundoPersonalisado))
             binding.mcvContent.setOnClickListener {
                 listenerShare(it)
             }
