@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.ddn.visitcard.data.BusinessCard
-import com.ddn.visitcard.data.BusinessCardDao
 import com.ddn.visitcard.data.BusinessCardRepository
 import kotlinx.coroutines.launch
 
